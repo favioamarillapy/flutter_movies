@@ -10,7 +10,7 @@ class MovieSlider extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            "Populars",
+            "Popular",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
