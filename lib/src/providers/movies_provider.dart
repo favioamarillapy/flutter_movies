@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movies/src/models/search_movies_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_movies/src/models/models.dart';
 
@@ -59,5 +60,15 @@ class MoviesProvider extends ChangeNotifier {
     moviesCast[movieId] = creditsResponse.cast;
 
     return creditsResponse.cast;
+  }
+
+  Future<List<Movie>> getSearchMovies(String query) async {
+    var url = Uri.https(_baseUrl, "3/search/movie",
+        {"api_key": _apiKey, "language": _apiLanguage, "query": query});
+
+    final response = await http.get(url);
+    final searchResponse = SearchResponse.fromJson(response.body);
+
+    return searchResponse.results;
   }
 }
